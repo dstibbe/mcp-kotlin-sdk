@@ -430,6 +430,37 @@ public open class Server(private val serverInfo: Implementation, options: Server
     }
 
     /**
+     * Registers a single resourcetemplate. The client can then read the resource content.
+     *
+     * @param uriTemplate The URI template of the resource(s).
+     * @param name A human-readable name for the resources.
+     * @param description A description of the resource's content.
+     * @param mimeType The MIME type of the resource content.
+     * @param readHandler A suspend function that returns the resource content when read by the client.
+     * @throws IllegalStateException If the server does not support resources.
+     */
+    public fun addResourceTemplate(
+        uriTemplate: String,
+        name: String,
+        description: String,
+        mimeType: String = "text/html",
+        readHandler: suspend (ReadResourceRequest) -> ReadResourceResult,
+    ) {
+        if (capabilities.resources == null) {
+            logger.error { "Failed to add resource '$name': Server does not support resources capability" }
+            throw IllegalStateException("Server does not support resources capability.")
+        }
+        logger.info { "Registering resource: $name ($uriTemplate)" }
+        // implement this
+//        _resources.update { current ->
+//            current.put(
+//                uriTemplate,
+//                RegisteredResource(Resource(uriTemplate, name, description, mimeType), readHandler),
+//            )
+//        }
+    }
+
+    /**
      * Registers multiple resources at once.
      *
      * @param resourcesToAdd A list of [RegisteredResource] objects representing the resources to register.

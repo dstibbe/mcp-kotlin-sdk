@@ -90,6 +90,19 @@ fun configureServer(): Server {
         )
     }
 
+    server.addResource(
+        uriTemplate = "document://{id}",
+        name = "Web Search",
+        description = "Web search engine",
+        mimeType = "application/pdf"
+    ){ request ->
+        ReadResourceResult(
+            contents = listOf(
+                TextResourceContents("Placeholder content for ${request.uri}", request.uri, "text/html")
+            )
+        )
+    }
+
     return server
 }
 
