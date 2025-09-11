@@ -37,6 +37,8 @@ kotlin {
                 api(libs.kotlinx.io.core)
                 api(libs.ktor.server.websockets)
                 api(libs.kotlinx.collections.immutable)
+//                api(libs.uritemplate.lib)
+                api("io.github.std-uritemplate:std-uritemplate:0.0.54")
                 implementation(libs.kotlin.logging)
             }
         }
@@ -44,6 +46,7 @@ kotlin {
         commonTest {
             dependencies {
                 implementation(kotlin("test"))
+                api("io.github.std-uritemplate:std-uritemplate:0.0.54")
                 implementation(libs.kotest.assertions.json)
             }
         }
