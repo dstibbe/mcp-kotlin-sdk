@@ -46,7 +46,6 @@ kotlin {
         commonTest {
             dependencies {
                 implementation(kotlin("test"))
-                api("io.github.std-uritemplate:std-uritemplate:0.0.54")
                 implementation(libs.kotest.assertions.json)
             }
         }
